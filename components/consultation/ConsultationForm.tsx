@@ -6,6 +6,7 @@ import CheckboxGroup from './CheckboxGroup';
 import { servicesList } from '@/data/consultation';
 import { FormErrors, FormState } from './consultation.types';
 import { validateForm } from '@/lib/validation';
+import { motion } from 'motion/react';
 
 export default function ConsultationForm() {
   const [form, setForm] = useState<FormState>({
@@ -58,7 +59,16 @@ export default function ConsultationForm() {
       <p className='text-center text-gray-600 text-sm font-bold md:text-base leading-relaxed my-4'>
         برای ارتقای بیزینس خود به دنبال فرصتی ناب هستید ؟ فرم زیر را تکمیل کنید تا مشاوران ما به صورت کاملا رایگان شما را راهنمایی کنند.
       </p>
-      <div className='w-full  bg-white rounded-xl border border-gray-300 p-4 md:p-8 flex flex-col gap-6'>
+      <motion.div
+        initial='hidden'
+        whileInView='visible'
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        variants={{
+          visible: { opacity: 1, scale: 1 },
+          hidden: { opacity: 0, scale: 0 },
+        }}
+        className='w-full  bg-white rounded-xl border border-gray-300 p-4 md:p-8 flex flex-col gap-6'>
         <form onSubmit={handleSubmit} className='flex flex-col gap-10' dir='rtl'>
           <div className='flex flex-col md:flex-row justify-between gap-5'>
             <InputField
@@ -111,7 +121,7 @@ export default function ConsultationForm() {
             ثبت درخواست
           </button>
         </form>
-      </div>
+      </motion.div>
     </section>
   );
 }

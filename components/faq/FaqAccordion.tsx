@@ -2,6 +2,7 @@
 
 import { faqs } from '@/data/faq';
 import { useState } from 'react';
+import { motion } from 'motion/react';
 
 export default function FaqAccordion() {
   const [openIds, setOpenIds] = useState<number[]>([]);
@@ -19,7 +20,16 @@ export default function FaqAccordion() {
           <p className='text-base text-gray-500'>سوالات متداولی که ممکن است نیاز شما نیز باشند در اینجا پاسخ داده شده اند:</p>
         </div>
 
-        <div className='flex-2 flex flex-col gap-4'>
+        <motion.div
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true }}
+          transition={{ duration: 0.3 }}
+          variants={{
+            visible: { opacity: 1, scale: 1 },
+            hidden: { opacity: 0, scale: 0 },
+          }}
+          className='flex-2 flex flex-col gap-4'>
           {faqs.map((faq) => (
             <div key={faq.id} className='border border-gray-300 rounded-xl overflow-hidden'>
               <button
@@ -32,7 +42,7 @@ export default function FaqAccordion() {
               {openIds.includes(faq.id) && <div className='p-4 bg-white text-gray-700 text-sm'>{faq.answer}</div>}
             </div>
           ))}
-        </div>
+        </motion.div>
       </section>
     </div>
   );

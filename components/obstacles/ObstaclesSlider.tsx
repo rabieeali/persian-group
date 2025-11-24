@@ -6,9 +6,9 @@ import { Navigation, Autoplay } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { ObstacleItem } from './Obstacles.types';
+import obstacles from '@/data/obstacles';
 
-export default function ObstaclesSlider({ items }: { items: ObstacleItem[] }) {
+export default function ObstaclesSlider() {
   const swiperRef = useRef<SwiperType | null>(null);
 
   const handlePrev = () => {
@@ -21,6 +21,7 @@ export default function ObstaclesSlider({ items }: { items: ObstacleItem[] }) {
   return (
     <section className='w-full'>
       {/* Gradient background */}
+
       <div className='w-full relative'>
         <div
           className='absolute w-full h-75'
@@ -29,6 +30,7 @@ export default function ObstaclesSlider({ items }: { items: ObstacleItem[] }) {
           }}></div>
         <div className='container mx-auto px-6 relative py-12'>
           {/* Header */}
+
           <div className='md:mb-4 text-center'>
             <h2 className='text-white text-lg md:text-xl font-bold'>موانع رایج در دریافت خدمات تولید محتوا برای کسب‌وکارها</h2>
           </div>
@@ -38,7 +40,8 @@ export default function ObstaclesSlider({ items }: { items: ObstacleItem[] }) {
                 aria-label='قبلی'
                 onClick={handlePrev}
                 className='w-10 h-10 md:w-12 md:h-12 bg-white/95 hover:bg-white shadow-lg rounded-full flex items-center justify-center focus:outline-none'>
-                {/* Left arrow icon (RTL: points left visually previous) */}
+                {/* Left arrow icon */}
+
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   className='w-5 h-5 text-gray-700'
@@ -57,6 +60,7 @@ export default function ObstaclesSlider({ items }: { items: ObstacleItem[] }) {
                 onClick={handleNext}
                 className='w-10 h-10 md:w-12 md:h-12 bg-white/95 hover:bg-white shadow-lg rounded-full flex items-center justify-center focus:outline-none'>
                 {/* Right arrow icon*/}
+
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   className='w-5 h-5 text-gray-700'
@@ -92,7 +96,7 @@ export default function ObstaclesSlider({ items }: { items: ObstacleItem[] }) {
                   1024: { slidesPerView: 3 },
                   1280: { slidesPerView: 4 },
                 }}>
-                {items.map((item) => (
+                {obstacles.map((item) => (
                   <SwiperSlide key={item.id} className='p-4'>
                     <article className='bg-white rounded-xl shadow-md p-6 h-full flex flex-col cursor-pointer' dir='rtl'>
                       <div className='w-full flex justify-center mb-4'>
