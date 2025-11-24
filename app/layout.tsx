@@ -1,16 +1,27 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import localFont from 'next/font/local'
+ 
+const iransansFont = localFont({
+    src: [
+    {
+      path: '../public/fonts/iransans/IRANSansWeb_Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/iransans/IRANSansWeb_Bold.woff2',
+      weight: '900',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/iransans/IRANSansWeb_Light.woff2',
+      weight: '100',
+      style: 'normal',
+    }
+  ],
+})
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,9 +34,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="fa" dir="rtl" className="bg-gray-100">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${iransansFont.className} `}
       >
         {children}
       </body>
